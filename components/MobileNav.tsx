@@ -15,7 +15,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
   
-import React from 'react'
 
 const MobileNav = ({ user }: MobileNavProps) => {
     const pathname = usePathname();
@@ -52,7 +51,7 @@ const MobileNav = ({ user }: MobileNavProps) => {
                                 return (
                                     <SheetClose asChild key={item.route}>
                                         <Link href={item.route} key={item.label} className={cn('mobilenav-sheet_close w-full', {'bg-bank-gradient': isActive})}>
-                                            <Image src={item.imgURL} alt={item.label} width={20} height={20} fill className={cn({'brightness-[3] invert-0': isActive})} />
+                                            <Image src={item.imgURL} alt={item.label} width={20} height={20} className={cn({'brightness-[3] invert-0': isActive})} />
                                             
                                             <p className={cn("text-16 font-semibold text-black-2", {"text-white": isActive })}>
                                                 {item.label}
