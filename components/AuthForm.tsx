@@ -10,23 +10,16 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 
 import { Button } from "@/components/ui/button"
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
+import { Form } from "@/components/ui/form"
 import CustomInputs from './CustomInputs'
 import { authFormSchema } from '@/lib/utils'
+import { Loader2 } from 'lucide-react'
  
 
 
 const AuthForm = ({ type }: { type: string }) => {
   const [user, setUser] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof authFormSchema>>({
@@ -41,7 +34,9 @@ const AuthForm = ({ type }: { type: string }) => {
   function onSubmit(values: z.infer<typeof authFormSchema>) {
     // Do something with the form values.
      // ✅ This will be type-safe and validated.
+     setIsLoading(true)
     console.log(values)
+    setIsLoading(false)
    }
 
   return (
@@ -94,7 +89,15 @@ const AuthForm = ({ type }: { type: string }) => {
                   <CustomInputs 
                     control={form.control} name='password' label='password' placeholder='Enter your password'
                   />                
-                  <Button type="submit">Submit</Button>
+                  <Button type="submit" className='form-btn'>
+                    {isLoading ? (
+                      <>
+                        <Loader2 size={20}
+                        className='animate-spin'/> &nbsp;
+                        Loading...
+                      </>
+                    ) : type === 'sign-in' ? 'Sign in' : 'Sign up'}
+                  </Button>
                 </form>
               </Form>
         </>
