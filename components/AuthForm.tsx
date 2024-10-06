@@ -2,19 +2,17 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import React, { useState } from 'react'
-
- 
+import React, { useState } from 'react' 
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-
 import { Button } from "@/components/ui/button"
 import { Form } from "@/components/ui/form"
 import CustomInputs from './CustomInputs'
 import { authFormSchema } from '@/lib/utils'
 import { Loader2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
+import { signIn, signUp } from '@/lib/actions/user.actions'
  
 
 
@@ -42,19 +40,19 @@ const AuthForm = ({ type }: { type: string }) => {
        //Sign up with AppWrite & create plaid link token
 
        if(type === 'sign-up') {
-        // const newUser = await signUp(data);
+         const newUser = await signUp(data);
 
-        // setUser(newUser);
+         setUser(newUser);
        }
        if(type === 'sign-in') {
-         // const response = await signIn({
-         //   email: data.email,
-          //  password: data.password
-         // })
+          // const response = await signIn({
+            // email: data.email,
+            // password: data.password
+          // })
 
-          //if(response) router.push('/')
+          // if(response) router.push('/')
 
-       }
+        }
        setIsLoading(false)
      } catch (error) {
         console.log(error)
