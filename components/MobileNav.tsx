@@ -20,6 +20,7 @@ import Footer from "./Footer"
 const MobileNav = ({ user }: MobileNavProps) => {
     const pathname = usePathname();
   return (
+    
     <section className="w-full max-w-[264px]">
         <Sheet>
             <SheetTrigger>
@@ -40,7 +41,7 @@ const MobileNav = ({ user }: MobileNavProps) => {
                     alt="Horizon logo"                
                     />
                     <h1 className='text-26 font-ibm-plex-serif font-bold text-black-1'>
-                        Horizon <h3>{user.$id}</h3>
+                        Horizon 
                     </h1>
 
                 </Link>
@@ -58,16 +59,18 @@ const MobileNav = ({ user }: MobileNavProps) => {
                                                 {item.label}
                                             </p>
                                         </Link>
+                                        
 
                                     </SheetClose>
 
                                     
                                 )
                             })}
+                            
 
                         </nav>
                     </SheetClose>
-                    <Footer user={user}/>
+                    <Footer user={user} type='mobile' />
                 </div>
             </SheetContent>
         </Sheet>
